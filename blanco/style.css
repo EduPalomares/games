@@ -1,0 +1,271 @@
+/* --- Estilos Generales --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%; /* Asegura que el body ocupe toda la altura */
+  height: -webkit-fill-available; /* iOS Safari fix */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #f0f2f5;
+  display: flex; /* Necesario para centrar los contenedores */
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  overflow: hidden; /* Evita scroll general */
+}
+
+/* --- Contenedores de Pantalla Base --- */
+.screen-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  position: relative;
+}
+
+#startScreen .title-text {
+  font-size: 2em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.action-button {
+  padding: 12px 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.action-button:hover {
+  background-color: #0056b3;
+}
+.action-button:active {
+  transform: scale(0.95);
+}
+
+.action-button.show-button {
+  background-color: #ffc107; /* Ámbar */
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.action-button.show-button:hover {
+  background-color: #e0a800;
+}
+
+/* --- Pantalla Palabra Oculta --- */
+#hiddenWordScreen .center-display {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  min-height: 1.5em;
+}
+
+.navigation-buttons.single-nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+/* --- Pantalla de Configuración (Setup) --- */
+.setup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.question-label {
+  display: block;
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1em;
+  text-align: center;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#submitPlayersBtn {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #28a745; /* Verde */
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#submitPlayersBtn:hover {
+  background-color: #218838;
+}
+
+.message {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #dc3545;
+  min-height: 1.2em;
+}
+
+/* --- Pantalla Principal del Juego --- */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+/* Indicadores */
+.player-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.player-indicator {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  background-color: #28a745; /* Verde (no visto) */
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  flex-shrink: 0;
+  cursor: pointer; /* Añadido para indicar que es clickeable */
+}
+.player-indicator:hover {
+  transform: scale(1.1); /* Efecto visual al pasar por encima */
+}
+
+.player-indicator.inactive {
+  opacity: 0.6;
+}
+
+.player-indicator.seen {
+  background-color: #dc3545; /* Rojo (visto) */
+}
+
+/* Display central del juego */
+.game-container .center-display {
+  font-size: 3em;
+  font-weight: bold;
+  color: #333;
+  margin: auto 0;
+  min-height: 80px;
+  line-height: 1;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+/* Botón Mostrar del juego */
+.game-container .action-button.show-button {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Botones de navegación (< >) */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  position: absolute;
+  bottom: 10px;
+}
+
+/* Estilo botones < y > */
+.nav-button {
+  font-size: 1.5em; /* Reducido ligeramente para que "Salir" quepa mejor */
+  padding: 8px 18px; /* Ajustado */
+  min-width: 60px; /* Ancho mínimo para consistencia */
+  text-align: center;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nav-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #adb5bd;
+}
+
+/* Clase opcional para el botón Salir */
+.nav-button.exit-button {
+  background-color: #dc3545; /* Rojo para destacar */
+  font-size: 1em; /* Más pequeño si es necesario */
+  font-weight: bold;
+}
+.nav-button.exit-button:hover:not(:disabled) {
+  background-color: #c82333;
+}

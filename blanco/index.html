@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Blanco</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Pantalla de Inicio (Nueva) -->
+    <div class="screen-container" id="startScreen">
+      <h1 class="title-text">Nuevo juego</h1>
+      <button class="action-button" id="startButton">Comenzar</button>
+    </div>
+
+    <!-- Pantalla Palabra Oculta (Nueva) -->
+    <div class="screen-container" id="hiddenWordScreen" style="display: none">
+      <div class="center-display" id="hiddenWordDisplay">Palabra Oculta</div>
+      <button class="action-button show-button" id="showHiddenWordBtn">
+        Mostrar
+      </button>
+      <div class="navigation-buttons">
+        <button class="nav-button exit-button" id="exitBtn">Salir</button>
+        <!-- Contenedor para alinear a la derecha -->
+        <button class="nav-button" id="goToSetupBtn">></button>
+      </div>
+    </div>
+
+    <!-- Pantalla de Configuración de Jugadores (Antes era la inicial) -->
+    <div class="setup-container" id="setupScreen" style="display: none">
+      <label for="numPlayersInput" class="question-label"
+        >¿Cuántos jugadores?</label
+      >
+      <input
+        type="number"
+        id="numPlayersInput"
+        name="numPlayers"
+        placeholder="Mínimo 4"
+        min="4"
+        inputmode="numeric"
+      />
+      <button id="submitPlayersBtn">Aceptar</button>
+      <!-- Mismo ID que antes -->
+      <p id="messageArea" class="message"></p>
+    </div>
+
+    <!-- Pantalla Principal del Juego (Como estaba antes, pero ahora se muestra después del setup) -->
+    <div class="game-container" id="gameScreen" style="display: none">
+      <!-- Indicadores superiores de jugador -->
+      <div class="player-indicators" id="playerIndicators">
+        <!-- Los indicadores se generarán aquí con JS -->
+      </div>
+
+      <!-- Número del jugador activo / Palabra -->
+      <div class="center-display" id="activePlayerDisplay">
+        <!-- El número/palabra se mostrará aquí -->
+      </div>
+
+      <!-- Botón central "Mostrar" (del juego) -->
+      <button class="action-button show-button" id="showWordBtn">
+        Mostrar
+      </button>
+      <!-- Mismo ID que antes -->
+
+      <!-- Botones de navegación inferior (< >) -->
+      <div class="navigation-buttons">
+        <button class="nav-button" id="prevPlayerBtn" disabled><</button>
+        <!-- Se modificará dinámicamente a Salir -->
+        <button class="nav-button" id="nextPlayerBtn">></button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
