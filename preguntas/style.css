@@ -1,0 +1,70 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#mainText {
+  font-size: 2em;
+  margin-bottom: 80px;
+}
+
+#mainText.counting {
+  font-size: 6em;
+}
+
+.controls {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.left-bottom {
+  left: 20px;
+}
+
+.right-bottom {
+  right: 20px;
+}

@@ -215,6 +215,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  function calcularNumInfiltrados(numJugadores) {
+    if (numJugadores < 4) {
+      return 1; // Valor para menos de 4 jugadores (podrías ajustarlo a 0 si prefieres)
+    }
+    // Ajuste logarítmico con parámetros modificados para coincidir mejor desde 4 jugadores
+    const resultadoDecimal = Math.log2(numJugadores / 2) * 1.6;
+    return Math.max(1, Math.floor(resultadoDecimal));
+  }
+
   // --- Lógica de Navegación y Setup ---
 
   // 1. Inicio -> Palabra Oculta
@@ -273,8 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPlayer = 1; // Empieza el jugador 1
       playersData = []; // Reinicia el array de datos de jugadores
 
-      // Calcula cuántos tendrán la palabra "Perro" (75% redondeado hacia arriba)
-      const numPerro = Math.ceil(totalPlayers * 0.75);
+      const numInfiltrated = calcularNumInfiltrados(totalPlayers);
 
       // Crea un array con los IDs de jugador [1, 2, ..., N]
       let playerIds = Array.from({ length: totalPlayers }, (_, i) => i + 1);
@@ -283,8 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Asigna "Perro" o "Blanco" basado en el array mezclado
       for (let i = 0; i < totalPlayers; i++) {
         const playerId = playerIds[i];
-        // Los primeros 'numPerro' en el array mezclado obtienen "Perro"
-        const word = i < numPerro ? secretWord : "Blanco";
+        // Los primeros 'numInfiltrated' en el array mezclado obtienen "Perro"
+        const word = i < numInfiltrated ? "Blanco" : secretWord;
         playersData.push({ id: playerId, seen: false, word: word });
       }
 
@@ -297,6 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       generatePlayerIndicators(); // Crea los indicadores visuales de jugador
       updateGameDisplay(); // Actualiza la pantalla de juego (número, botones, etc.)
+      document.getElementById("infiltratedNumberValue").textContent =
+        numInfiltrated; // Actualiza el número de infiltrados en la pantalla
       showScreen(gameScreen); // Muestra la pantalla principal del juego
     }
   });
