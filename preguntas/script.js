@@ -4,6 +4,7 @@ const timerBtn = document.getElementById("timerBtn");
 
 let phrases = [];
 let timerInterval;
+let currentPhrase = "";
 const sounds = [
   { src: "sounds/ding.mp3", weight: 0.8 },
   { src: "sounds/cat.mp3", weight: 0.05 },
@@ -38,7 +39,8 @@ fetch("phrases.json")
   .then((response) => response.json())
   .then((data) => {
     phrases = data.phrases;
-    mainText.textContent = getRandomPhrase();
+    currentPhrase = getRandomPhrase();
+    mainText.textContent = currentPhrase;
   })
   .catch((error) => {
     console.error("Error al cargar el archivo JSON:", error);
@@ -47,7 +49,8 @@ fetch("phrases.json")
 
 changeTextBtn.addEventListener("click", () => {
   if (phrases.length > 0) {
-    mainText.textContent = getRandomPhrase();
+    currentPhrase = getRandomPhrase();
+    mainText.textContent = currentPhrase;
   } else {
     mainText.textContent = "No hay frases disponibles.";
   }
@@ -67,7 +70,7 @@ timerBtn.addEventListener("click", () => {
       clearInterval(timerInterval);
       mainText.classList.remove("counting");
       if (phrases.length > 0) {
-        mainText.textContent = getRandomPhrase();
+        mainText.textContent = currentPhrase;
       } else {
         mainText.textContent = "No hay frases disponibles.";
       }
